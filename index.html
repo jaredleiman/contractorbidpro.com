@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contractor Bid Pro — Win More Jobs. Write Less.</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --blue: #1a3a5c;
+  --blue-mid: #2a5298;
+  --blue-light: #4a7abf;
+  --blueprint: #0d2137;
+  --grid-line: rgba(100,160,220,0.15);
+  --grid-line-strong: rgba(100,160,220,0.3);
+  --paper: #f2ede4;
+  --paper-dark: #e5ddd0;
+  --ink: #1a1a18;
+  --rust: #b5451b;
+  --white: #ffffff;
+  --mono: 'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Source Serif 4', serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  background: var(--blueprint);
+  border-bottom: 3px solid var(--blue-light);
+  padding: 0 48px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo-wrap { display: flex; align-items: center; padding: 16px 0; }
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--rust);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.9rem; color: white;
+  margin-right: 12px; flex-shrink: 0;
+}
+.logo-text { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; color: white; }
+.logo-text span { color: var(--blue-light); }
+.nav-right { display: flex; align-items: center; }
+.nav-link { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1px; color: rgba(255,255,255,0.45); text-decoration: none; padding: 0 20px; height: 100%; display: flex; align-items: center; border-left: 1px solid rgba(255,255,255,0.08); transition: color 0.2s; }
+.nav-link:hover { color: white; }
+.nav-cta-btn { background: var(--rust); color: white; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; padding: 0 28px; height: 100%; display: flex; align-items: center; border: none; cursor: pointer; text-decoration: none; border-left: 1px solid rgba(255,255,255,0.08); transition: background 0.2s; }
+.nav-cta-btn:hover { background: #9b2d1f; }
+
+/* HERO - SPLIT */
+.hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 67px); }
+.hero-left {
+  background-color: var(--blueprint);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px), linear-gradient(var(--grid-line-strong) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line-strong) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+  padding: 64px 56px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.hero-left::after { content: ''; position: absolute; bottom: -60px; right: -60px; width: 300px; height: 300px; border: 40px solid rgba(100,160,220,0.05); border-radius: 50%; }
+.revision-tag { font-family: var(--mono); font-size: 0.65rem; color: var(--blue-light); letter-spacing: 2px; margin-bottom: 40px; display: flex; align-items: center; gap: 8px; }
+.revision-tag::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--rust); border-radius: 50%; }
+.hero-left h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1; color: white; text-transform: uppercase; letter-spacing: -1px; margin-bottom: 8px; }
+.hero-left h1 .dim { font-weight: 300; color: rgba(255,255,255,0.3); display: block; }
+.hero-left h1 .accent { color: var(--blue-light); }
+.hero-rule { width: 64px; height: 3px; background: var(--rust); margin: 32px 0; }
+.hero-desc { font-size: 1.05rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.6); max-width: 420px; margin-bottom: 48px; font-style: italic; }
+.hero-desc strong { color: rgba(255,255,255,0.9); font-style: normal; font-weight: 600; }
+.hero-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.btn-main { background: var(--rust); color: white; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; padding: 16px 36px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); }
+.btn-main:hover { background: #9b2d1f; transform: translateY(-2px); }
+.hero-sub-note { font-family: var(--mono); font-size: 0.62rem; color: rgba(255,255,255,0.28); letter-spacing: 1px; }
+
+/* HERO RIGHT — SAMPLE PROPOSAL */
+.hero-right { background: var(--paper); border-left: 4px solid var(--blue-light); display: flex; flex-direction: column; overflow: hidden; }
+.proposal-topbar { background: var(--blue); color: white; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--blue-light); }
+.proposal-topbar-title { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-light); }
+.proposal-topbar-num { font-family: var(--mono); font-size: 0.65rem; color: rgba(255,255,255,0.4); }
+.proposal-scroll { flex: 1; overflow-y: auto; padding: 36px 32px; }
+.prop-company { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.8rem; letter-spacing: 1px; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+.prop-tagline { font-family: var(--mono); font-size: 0.62rem; color: #aaa; letter-spacing: 2px; margin-bottom: 24px; }
+.prop-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 28px; background: var(--paper-dark); }
+.prop-meta-cell { background: var(--paper); padding: 10px 14px; }
+.prop-meta-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase; color: #bbb; margin-bottom: 2px; }
+.prop-meta-val { font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+.prop-section-head { font-family: 'Oswald', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); border-bottom: 1px solid var(--paper-dark); padding-bottom: 6px; margin: 20px 0 12px; }
+.prop-text { font-size: 0.85rem; line-height: 1.7; color: #555; font-weight: 300; }
+.prop-line-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.83rem; color: #333; }
+.prop-line-item::before { content: '→'; color: var(--rust); font-family: var(--mono); font-size: 0.75rem; margin-top: 2px; flex-shrink: 0; }
+.prop-total-bar { background: var(--blue); color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+.prop-total-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-light); }
+.prop-total-amount { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.6rem; color: white; }
+
+/* TAPE */
+.tape { background: var(--rust); color: white; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; padding: 10px 0; white-space: nowrap; overflow: hidden; }
+.tape-inner { display: inline-block; animation: scroll-tape 22s linear infinite; }
+@keyframes scroll-tape { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* HOW IT WORKS */
+.how-section { display: grid; grid-template-columns: 280px 1fr; }
+.how-label-col {
+  background-color: var(--blueprint);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding: 60px 36px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 4px solid var(--blue-light);
+}
+.how-label-col .section-num { font-family: var(--mono); font-size: 0.62rem; color: var(--blue-light); letter-spacing: 3px; margin-bottom: 20px; }
+.how-label-col h2 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 2.5rem; text-transform: uppercase; line-height: 1; color: white; }
+.how-label-col h2 span { color: var(--blue-light); display: block; font-weight: 300; }
+.how-steps { background: var(--paper); display: grid; grid-template-rows: repeat(3, 1fr); }
+.how-step { padding: 32px 48px; border-bottom: 1px solid var(--paper-dark); display: flex; gap: 28px; align-items: flex-start; transition: background 0.2s; }
+.how-step:last-child { border-bottom: none; }
+.how-step:hover { background: var(--paper-dark); }
+.step-counter { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 3.5rem; line-height: 1; color: rgba(26,58,92,0.1); flex-shrink: 0; width: 60px; transition: color 0.2s; }
+.how-step:hover .step-counter { color: rgba(181,69,27,0.18); }
+.step-body h3 { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-bottom: 8px; margin-top: 8px; }
+.step-body p { font-size: 0.9rem; line-height: 1.7; color: #666; font-weight: 300; }
+.step-pill { display: inline-block; margin-top: 10px; background: var(--blueprint); color: var(--blue-light); font-family: var(--mono); font-size: 0.58rem; letter-spacing: 2px; padding: 4px 10px; }
+
+/* FEATURES */
+.features-section { background: var(--paper-dark); border-top: 1px solid #d5cfc6; border-bottom: 1px solid #d5cfc6; padding: 80px 48px; }
+.features-inner { max-width: 1100px; margin: 0 auto; }
+.features-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 40px; }
+.features-header h2 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); text-transform: uppercase; line-height: 1; color: var(--blue); }
+.features-header h2 em { font-style: italic; font-family: 'Source Serif 4', serif; font-weight: 300; color: var(--rust); font-size: 0.65em; display: block; text-transform: none; letter-spacing: 0; margin-top: 4px; }
+.features-header p { max-width: 300px; font-size: 0.88rem; color: #888; line-height: 1.7; font-weight: 300; text-align: right; }
+.checklist { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #d5cfc6; }
+.check-item { background: var(--paper); padding: 28px 24px; transition: background 0.2s; }
+.check-item:hover { background: white; }
+.check-mark { width: 26px; height: 26px; border: 2px solid var(--rust); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 0.8rem; color: var(--rust); font-weight: 700; }
+.check-item h4 { font-family: 'Oswald', sans-serif; font-size: 0.92rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-bottom: 8px; }
+.check-item p { font-size: 0.82rem; color: #777; line-height: 1.6; font-weight: 300; }
+
+/* TRADES TICKER */
+.trades-bar { background: var(--blue); overflow: hidden; border-top: 2px solid var(--blue-light); border-bottom: 2px solid var(--blue-light); }
+.trades-ticker { display: flex; animation: scroll-trades 28s linear infinite; width: max-content; }
+.trade-chip { display: flex; align-items: center; gap: 10px; padding: 18px 32px; border-right: 1px solid rgba(255,255,255,0.07); white-space: nowrap; }
+.trade-chip .ti { font-size: 1.1rem; }
+.trade-chip .tn { font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+@keyframes scroll-trades { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* TESTIMONIALS */
+.testimonials-section { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+.test-header { display: flex; align-items: center; gap: 24px; margin-bottom: 48px; }
+.test-header h2 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 2.2rem; text-transform: uppercase; color: var(--blue); line-height: 1; white-space: nowrap; }
+.test-header h2 span { font-family: 'Source Serif 4', serif; font-weight: 300; font-style: italic; font-size: 1.2rem; color: #bbb; display: block; text-transform: none; }
+.test-divider { flex: 1; height: 1px; background: var(--paper-dark); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.testimonial { border-top: 3px solid var(--rust); padding-top: 24px; }
+.test-quote { font-size: 0.93rem; font-style: italic; font-weight: 300; line-height: 1.8; color: #444; margin-bottom: 20px; }
+.test-quote::before { content: '\201C'; color: var(--rust); font-size: 1.4rem; line-height: 0; vertical-align: -0.35em; margin-right: 2px; }
+.test-author { display: flex; align-items: center; gap: 12px; }
+.test-avatar { width: 36px; height: 36px; background: var(--blueprint); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.7rem; color: var(--blue-light); flex-shrink: 0; }
+.test-name { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; color: var(--ink); }
+.test-trade { font-size: 0.72rem; color: #aaa; font-family: var(--mono); }
+
+/* PRICING */
+.pricing-section {
+  background-color: var(--blueprint);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px), linear-gradient(var(--grid-line-strong) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line-strong) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+  padding: 80px 48px;
+  display: flex; justify-content: center; align-items: center;
+}
+.pricing-wrap { max-width: 720px; width: 100%; }
+.pricing-eyebrow { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 3px; color: var(--blue-light); margin-bottom: 24px; text-transform: uppercase; }
+.pricing-card { background: var(--paper); display: grid; grid-template-columns: 1fr 1fr; }
+.pricing-left { padding: 48px; border-right: 2px solid var(--paper-dark); }
+.pricing-left h2 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-bottom: 28px; }
+.price-display { display: flex; align-items: flex-start; gap: 4px; margin-bottom: 6px; }
+.price-dollar { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.4rem; color: var(--rust); margin-top: 10px; }
+.price-number { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 5rem; line-height: 1; color: var(--ink); }
+.price-period { font-size: 0.82rem; color: #aaa; align-self: flex-end; margin-bottom: 10px; font-family: var(--mono); }
+.price-note { font-family: var(--mono); font-size: 0.6rem; color: #aaa; letter-spacing: 1px; margin-bottom: 32px; }
+.btn-buy { width: 100%; background: var(--rust); color: white; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.95rem; letter-spacing: 3px; text-transform: uppercase; padding: 15px; border: none; cursor: pointer; transition: background 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
+.btn-buy:hover { background: #9b2d1f; }
+.buy-note { font-family: var(--mono); font-size: 0.58rem; color: #bbb; text-align: center; margin-top: 10px; letter-spacing: 1px; }
+.pricing-right { padding: 48px; }
+.pricing-right h3 { font-family: 'Oswald', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #aaa; margin-bottom: 22px; }
+.feature-line { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--paper-dark); font-size: 0.87rem; color: #444; }
+.feature-line:last-child { border-bottom: none; }
+.feature-line::before { content: '✓'; color: var(--rust); font-weight: 700; font-size: 0.82rem; flex-shrink: 0; }
+
+/* FAQ */
+.faq-section { padding: 80px 48px; max-width: 800px; margin: 0 auto; }
+.faq-section h2 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 2rem; text-transform: uppercase; color: var(--blue); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; }
+.faq-section h2::after { content: ''; flex: 1; height: 1px; background: var(--paper-dark); }
+.faq-item { border-bottom: 1px solid var(--paper-dark); cursor: pointer; }
+.faq-q { padding: 20px 0; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 0.97rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; gap: 16px; }
+.faq-item:hover .faq-q { color: var(--rust); }
+.faq-q-toggle { font-family: var(--mono); font-size: 1rem; color: var(--rust); transition: transform 0.2s; flex-shrink: 0; }
+.faq-item.open .faq-q-toggle { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.2s; font-size: 0.88rem; color: #666; line-height: 1.8; font-weight: 300; font-style: italic; }
+.faq-item.open .faq-a { max-height: 120px; padding-bottom: 20px; }
+
+/* FINAL CTA */
+.final-section { background: var(--paper-dark); border-top: 1px solid #d5cfc6; padding: 80px 48px; display: flex; justify-content: space-between; align-items: center; gap: 48px; }
+.final-left h2 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); text-transform: uppercase; line-height: 1; color: var(--blue); letter-spacing: -0.5px; margin-bottom: 16px; }
+.final-left h2 span { color: var(--rust); display: block; }
+.final-left p { font-size: 0.93rem; color: #777; line-height: 1.7; font-weight: 300; max-width: 420px; }
+.final-right { flex-shrink: 0; text-align: center; }
+.final-price { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 2px; color: #aaa; margin-bottom: 16px; text-transform: uppercase; }
+
+/* FOOTER */
+footer { background: var(--blueprint); border-top: 3px solid var(--blue-light); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-logo { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+.footer-logo span { color: var(--blue-light); }
+footer p { font-family: var(--mono); font-size: 0.58rem; color: rgba(255,255,255,0.22); letter-spacing: 1px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-link { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { border-left: none; border-top: 4px solid var(--blue-light); }
+  .how-section { grid-template-columns: 1fr; }
+  .how-label-col { border-right: none; border-bottom: 4px solid var(--blue-light); }
+  .features-header { flex-direction: column; align-items: flex-start; }
+  .features-header p { text-align: left; }
+  .checklist { grid-template-columns: 1fr 1fr; }
+  .testimonials-section, .faq-section, .features-section, .pricing-section { padding: 60px 24px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .pricing-card { grid-template-columns: 1fr; }
+  .pricing-left { border-right: none; border-bottom: 2px solid var(--paper-dark); }
+  .final-section { flex-direction: column; padding: 60px 24px; text-align: center; }
+  .final-left p { max-width: 100%; }
+  footer { padding: 24px; flex-direction: column; text-align: center; }
+  .hero-left { padding: 48px 24px; }
+  .how-step { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">CB</div>
+    <div class="logo-text">Contractor <span>Bid</span> Pro</div>
+  </div>
+  <div class="nav-right">
+    <a href="#how" class="nav-link">HOW IT WORKS</a>
+    <a href="#pricing" class="nav-link">PRICING</a>
+    <a href="#pricing" class="nav-cta-btn">Get Access</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="revision-tag">REV 1.0 &nbsp;·&nbsp; CONTRACTORBIDPRO.COM &nbsp;·&nbsp; PROPOSAL TOOL FOR THE TRADES</div>
+    <h1>
+      <span class="dim">Stop Writing.</span>
+      Start<br>
+      <span class="accent">Winning.</span>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">You do the work. You show up on time. You do it right. But if your proposal looks like it was written on a napkin, you lose the job. <strong>Contractor Bid Pro writes a complete, professional proposal in under 60 seconds — from any phone, from any job site.</strong></p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-main">Start Winning More Bids</a>
+      <div class="hero-sub-note">$49 / MONTH &nbsp;·&nbsp; CANCEL ANYTIME &nbsp;·&nbsp; INSTANT ACCESS</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="proposal-topbar">
+      <div class="proposal-topbar-title">Sample Output</div>
+      <div class="proposal-topbar-num">PROPOSAL #PB-4821 &nbsp;·&nbsp; GENERATED IN 12 SEC</div>
+    </div>
+    <div class="proposal-scroll">
+      <div class="prop-company">Rivera Roofing Co.</div>
+      <div class="prop-tagline">LICENSED &nbsp;·&nbsp; INSURED &nbsp;·&nbsp; PHOENIX, AZ</div>
+      <div class="prop-meta-grid">
+        <div class="prop-meta-cell"><div class="prop-meta-label">Prepared For</div><div class="prop-meta-val">Mike Thompson</div></div>
+        <div class="prop-meta-cell"><div class="prop-meta-label">Date</div><div class="prop-meta-val">March 22, 2026</div></div>
+        <div class="prop-meta-cell"><div class="prop-meta-label">Job Type</div><div class="prop-meta-val">Roofing</div></div>
+        <div class="prop-meta-cell"><div class="prop-meta-label">Timeline</div><div class="prop-meta-val">2 Days</div></div>
+      </div>
+      <div class="prop-section-head">Scope of Work</div>
+      <div class="prop-line-item">Full tear-off of existing shingle layers (2 layers)</div>
+      <div class="prop-line-item">Install ice & water shield along all eaves and valleys</div>
+      <div class="prop-line-item">30-year architectural shingles — Owens Corning Duration</div>
+      <div class="prop-line-item">Replace 3 existing roof vents with new ridge caps</div>
+      <div class="prop-line-item">Full debris cleanup and haul-away included</div>
+      <div class="prop-section-head">Payment Terms</div>
+      <p class="prop-text">50% deposit upon contract signing. Remaining 50% due upon project completion and client walkthrough approval.</p>
+      <div class="prop-section-head">Workmanship Warranty</div>
+      <p class="prop-text">Rivera Roofing Co. provides a 5-year workmanship warranty on all labor. Materials warranted per manufacturer (30 years).</p>
+      <div class="prop-total-bar">
+        <div class="prop-total-label">Total Project Investment</div>
+        <div class="prop-total-amount">$8,500</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tape">
+  <div class="tape-inner">ROOFING &nbsp;·&nbsp; HVAC &nbsp;·&nbsp; PLUMBING &nbsp;·&nbsp; ELECTRICAL &nbsp;·&nbsp; WIN MORE BIDS &nbsp;·&nbsp; LOOK MORE PROFESSIONAL &nbsp;·&nbsp; CLOSE MORE JOBS &nbsp;·&nbsp; SPEND LESS TIME ON PAPERWORK &nbsp;·&nbsp; ROOFING &nbsp;·&nbsp; HVAC &nbsp;·&nbsp; PLUMBING &nbsp;·&nbsp; ELECTRICAL &nbsp;·&nbsp; WIN MORE BIDS &nbsp;·&nbsp; LOOK MORE PROFESSIONAL &nbsp;·&nbsp; CLOSE MORE JOBS &nbsp;·&nbsp; SPEND LESS TIME ON PAPERWORK &nbsp;·&nbsp;</div>
+</div>
+
+<div class="how-section" id="how">
+  <div class="how-label-col">
+    <div class="section-num">// 01</div>
+    <h2>How It<br><span>Works</span></h2>
+  </div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-counter">01</div>
+      <div class="step-body">
+        <h3>Enter Your Job Details</h3>
+        <p>Fill in your company name, client name, trade type, job description, and price. Takes about two minutes on any device.</p>
+        <span class="step-pill">SIMPLE FORM</span>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="step-counter">02</div>
+      <div class="step-body">
+        <h3>Proposal Gets Written For You</h3>
+        <p>Contractor Bid Pro generates a complete, professional proposal — scope of work, materials, timeline, payment terms, warranty, and more. Done before you finish your coffee.</p>
+        <span class="step-pill">UNDER 60 SECONDS</span>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="step-counter">03</div>
+      <div class="step-body">
+        <h3>Send It & Win the Job</h3>
+        <p>Export to PDF or copy the text. Send it before you leave the driveway. Look like the most professional contractor they've ever dealt with.</p>
+        <span class="step-pill">PDF READY</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features-section">
+  <div class="features-inner">
+    <div class="features-header">
+      <h2>Built for the Field.<em>Not the office.</em></h2>
+      <p>Designed for contractors who work with their hands, not keyboards. Everything you need, nothing that gets in the way.</p>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-mark">✓</div><h4>Professional Language</h4><p>Proposals that sound like a seasoned pro wrote them — specific to your trade and the job.</p></div>
+      <div class="check-item"><div class="check-mark">✓</div><h4>PDF Export</h4><p>One click. Print-ready. Email it, text it, or hand it over on site. No formatting needed.</p></div>
+      <div class="check-item"><div class="check-mark">✓</div><h4>T&Cs & Payment Terms</h4><p>Every proposal includes professional terms, payment schedule, and warranty language. Built in automatically.</p></div>
+      <div class="check-item"><div class="check-mark">✓</div><h4>Signature Lines</h4><p>Client and contractor blocks on every proposal. Makes it feel official. Increases close rate.</p></div>
+      <div class="check-item"><div class="check-mark">✓</div><h4>Works on Your Phone</h4><p>Fill it out from the job site. No laptop needed. Generate and send before you pull out of the driveway.</p></div>
+      <div class="check-item"><div class="check-mark">✓</div><h4>Unlimited Proposals</h4><p>$49/month. Generate as many proposals as you want. No per-bid fees, no throttling.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="trades-bar">
+  <div class="trades-ticker">
+    <div class="trade-chip"><span class="ti">🏠</span><span class="tn">Roofing</span></div>
+    <div class="trade-chip"><span class="ti">❄️</span><span class="tn">HVAC</span></div>
+    <div class="trade-chip"><span class="ti">🔧</span><span class="tn">Plumbing</span></div>
+    <div class="trade-chip"><span class="ti">⚡</span><span class="tn">Electrical</span></div>
+    <div class="trade-chip"><span class="ti">🎨</span><span class="tn">Painting</span></div>
+    <div class="trade-chip"><span class="ti">🪵</span><span class="tn">Flooring</span></div>
+    <div class="trade-chip"><span class="ti">🌿</span><span class="tn">Landscaping</span></div>
+    <div class="trade-chip"><span class="ti">🧱</span><span class="tn">Masonry</span></div>
+    <div class="trade-chip"><span class="ti">🏗️</span><span class="tn">General</span></div>
+    <div class="trade-chip"><span class="ti">🪟</span><span class="tn">Windows</span></div>
+    <div class="trade-chip"><span class="ti">🏠</span><span class="tn">Roofing</span></div>
+    <div class="trade-chip"><span class="ti">❄️</span><span class="tn">HVAC</span></div>
+    <div class="trade-chip"><span class="ti">🔧</span><span class="tn">Plumbing</span></div>
+    <div class="trade-chip"><span class="ti">⚡</span><span class="tn">Electrical</span></div>
+    <div class="trade-chip"><span class="ti">🎨</span><span class="tn">Painting</span></div>
+    <div class="trade-chip"><span class="ti">🪵</span><span class="tn">Flooring</span></div>
+    <div class="trade-chip"><span class="ti">🌿</span><span class="tn">Landscaping</span></div>
+    <div class="trade-chip"><span class="ti">🧱</span><span class="tn">Masonry</span></div>
+    <div class="trade-chip"><span class="ti">🏗️</span><span class="tn">General</span></div>
+    <div class="trade-chip"><span class="ti">🪟</span><span class="tn">Windows</span></div>
+  </div>
+</div>
+
+<div class="testimonials-section">
+  <div class="test-header">
+    <h2>From the Field<span>What contractors say</span></h2>
+    <div class="test-divider"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <p class="test-quote">I used to spend 45 minutes writing proposals after dinner. Now I do it in 60 seconds before I leave the job site. Closed 3 extra jobs last month.</p>
+      <div class="test-author"><div class="test-avatar">MR</div><div><div class="test-name">Mike R.</div><div class="test-trade">Roofing · Phoenix, AZ</div></div></div>
+    </div>
+    <div class="testimonial">
+      <p class="test-quote">My proposals used to look like they were written on a napkin. Now clients actually comment on how professional everything looks. Worth every penny.</p>
+      <div class="test-author"><div class="test-avatar">DS</div><div><div class="test-name">Dave S.</div><div class="test-trade">HVAC · Atlanta, GA</div></div></div>
+    </div>
+    <div class="testimonial">
+      <p class="test-quote">I gave it to my son on his first solo job. He sent a proposal that looked better than anything I wrote after 20 years in the trade. This is a cheat code.</p>
+      <div class="test-author"><div class="test-avatar">TK</div><div><div class="test-name">Tom K.</div><div class="test-trade">General Contractor · Chicago, IL</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="pricing-section" id="pricing">
+  <div class="pricing-wrap">
+    <div class="pricing-eyebrow">// PRICING &nbsp;·&nbsp; ONE FLAT RATE &nbsp;·&nbsp; NO PER-BID FEES &nbsp;·&nbsp; CANCEL ANYTIME</div>
+    <div class="pricing-card">
+      <div class="pricing-left">
+        <h2>Full Access — All Trades</h2>
+        <div class="price-display">
+          <span class="price-dollar">$</span>
+          <span class="price-number">49</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <div class="price-note">CANCEL ANYTIME &nbsp;·&nbsp; NO CONTRACTS</div>
+        <button class="btn-buy">Start Winning More Bids</button>
+        <div class="buy-note">🔒 SECURE CHECKOUT &nbsp;·&nbsp; INSTANT ACCESS</div>
+      </div>
+      <div class="pricing-right">
+        <h3>Everything Included</h3>
+        <div class="feature-line">Unlimited professional proposals</div>
+        <div class="feature-line">All 10+ trades supported</div>
+        <div class="feature-line">PDF export on every proposal</div>
+        <div class="feature-line">Payment terms & warranty language</div>
+        <div class="feature-line">Signature lines & pro formatting</div>
+        <div class="feature-line">Works on phone, tablet & desktop</div>
+        <div class="feature-line">New features added regularly</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <h2>Questions</h2>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Do I need any technical knowledge? <span class="faq-q-toggle">+</span></div>
+    <div class="faq-a">Not at all. If you can fill out a form on your phone, you can use Contractor Bid Pro. No technical knowledge required.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">What trades does it work for? <span class="faq-q-toggle">+</span></div>
+    <div class="faq-a">Roofing, HVAC, plumbing, electrical, general contracting, painting, flooring, landscaping, masonry, fencing, and more. If it's a trade job, it works.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Can I edit the proposal after it's generated? <span class="faq-q-toggle">+</span></div>
+    <div class="faq-a">Yes — every proposal is fully editable. Tweak anything you want, or send it exactly as generated.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">How do I send it to my client? <span class="faq-q-toggle">+</span></div>
+    <div class="faq-a">Save as PDF with one click, then email it, text it, or print it. However you normally communicate with clients, it fits right in.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Is there a contract or commitment? <span class="faq-q-toggle">+</span></div>
+    <div class="faq-a">No contracts, no annual commitment. $49/month and cancel any time — no questions asked.</div>
+  </div>
+</div>
+
+<div class="final-section">
+  <div class="final-left">
+    <h2>Your Next Bid<span>Deserves to Win.</span></h2>
+    <p>You do the work. You show up. You deliver. Now send a proposal that looks the part — in 60 seconds, from anywhere, on any device.</p>
+  </div>
+  <div class="final-right">
+    <div class="final-price">$49 / MONTH &nbsp;·&nbsp; CANCEL ANYTIME</div>
+    <a href="#pricing" class="btn-main">Start Winning More Bids</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Contractor <span>Bid</span> Pro</div>
+  <p>© 2026 CONTRACTORBIDPRO.COM — ALL RIGHTS RESERVED</p>
+  <p>BUILT BY CONTRACTORS. FOR CONTRACTORS.</p>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
